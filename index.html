@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="IHSG Lab">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
+<title>IHSG Paper Lab</title>
+<style>
+:root{--bg:#0d1117;--pn:#161b22;--pn2:#1f2733;--bd:#2b3442;--tx:#e6edf3;--mu:#8b98a9;--ac:#e11d48;--ac2:#3b82f6;--gr:#22c55e;--rd:#ef4444;--yl:#eab308;--st:env(safe-area-inset-top);--sb:env(safe-area-inset-bottom)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;overscroll-behavior-y:contain}
+header{position:sticky;top:0;z-index:9;background:rgba(13,17,23,.95);backdrop-filter:blur(8px);padding:calc(var(--st) + 10px) 14px 8px;border-bottom:1px solid var(--bd)}
+.hrow{display:flex;align-items:center;gap:8px}h1{font-size:18px;margin:0;flex:1}
+.sub{font-size:11px;color:var(--mu);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}
+.ib{background:var(--pn2);border:1px solid var(--bd);color:var(--tx);border-radius:10px;padding:7px 11px;font-size:14px}
+main{padding:12px 12px calc(84px + var(--sb))}.pg{display:none}.pg.on{display:block}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:9;display:flex;background:rgba(22,27,34,.97);backdrop-filter:blur(8px);border-top:1px solid var(--bd);padding-bottom:var(--sb)}
+nav a{flex:1;text-align:center;padding:8px 0 7px;color:var(--mu);font-size:10.5px}nav a b{display:block;font-size:20px;line-height:24px;font-weight:400}nav a.on{color:var(--ac)}
+.card{background:var(--pn);border:1px solid var(--bd);border-radius:14px;padding:13px;margin-bottom:10px}
+h2{font-size:15px;margin:0 0 8px}h3{font-size:12px;color:var(--mu);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em}
+.mu{color:var(--mu)}.up{color:var(--gr)}.dn{color:var(--rd)}.sm{font-size:12px}.b{font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi{background:var(--pn2);border-radius:10px;padding:9px;text-align:center}.kpi .v{font-size:19px;font-weight:700}.kpi .l{font-size:10.5px;color:var(--mu)}
+.idx{display:flex;justify-content:space-between;align-items:flex-end}.idx .p{font-size:26px;font-weight:800}
+.badge{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:9px;white-space:nowrap;display:inline-block}
+.PASS,.BUY{background:#14532d;color:#86efac}.FAIL,.AVOID{background:#5b1a1a;color:#fca5a5}.COLLECTING,.WATCH{background:#4a3c0b;color:#fde68a}.NEUTRAL{background:#283241;color:#cbd5e1}
+.sig{border:1px solid var(--bd);background:var(--pn);border-radius:14px;padding:12px;margin-bottom:9px}
+.sig .a{display:flex;justify-content:space-between;align-items:center}.sig .t{font-size:18px;font-weight:800}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.g3 div{background:var(--pn2);border-radius:8px;padding:6px 8px}.g3 b{display:block;font-size:14px}.g3 span{font-size:10.5px;color:var(--mu)}
+.seg{display:flex;background:var(--pn2);border-radius:10px;padding:3px;gap:3px;margin-bottom:10px;overflow-x:auto}.seg a{flex:1;text-align:center;padding:7px 8px;border-radius:8px;font-size:12.5px;color:var(--mu);white-space:nowrap}.seg a.on{background:var(--ac2);color:#fff}
+.srow{display:flex;align-items:center;gap:8px;padding:10px 2px;border-bottom:1px solid var(--bd)}.srow .c{width:58px;font-weight:800}.srow .m{flex:1;min-width:0;font-size:11.5px;color:var(--mu)}.srow .r{text-align:right;font-size:13px}
+.vc{background:var(--pn);border:1px solid var(--bd);border-radius:14px;margin-bottom:9px;overflow:hidden}
+.vh{display:flex;align-items:center;gap:10px;padding:12px}.vh .t{flex:1;min-width:0}.vh .d{font-size:11.5px;color:var(--mu)}.vh .pnl{text-align:right;font-weight:700}.vh .pnl small{display:block;font-weight:400;font-size:10.5px;color:var(--mu)}
+.vb{display:none;border-top:1px solid var(--bd);padding:10px 12px;background:#121820}.vc.open .vb{display:block}
+.row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--bd);font-size:13px}.row:last-child{border:0}.row span:last-child{text-align:right}
+.tr{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid var(--bd)}
+.ev{padding:9px 0;border-bottom:1px solid var(--bd)}.ev:last-child{border:0}.ev .x{font-size:12px;color:#93c5fd;margin-top:3px}
+input,select,textarea{background:var(--pn2);color:var(--tx);border:1px solid var(--bd);border-radius:9px;padding:9px 10px;font:inherit;font-size:16px;width:100%}
+.btn{display:block;width:100%;background:var(--ac2);color:#fff;border:0;border-radius:11px;padding:12px;font-size:15px;font-weight:600;margin-top:8px}.btn.sec{background:var(--pn2);border:1px solid var(--bd);color:var(--tx)}
+.chk label{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--bd);font-size:14px}.chk input{width:22px;height:22px;accent-color:var(--gr)}
+.fld{margin-bottom:10px}.fld label{display:block;font-size:12px;color:var(--mu);margin-bottom:4px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.warn{background:#3b2a0a;border:1px solid #6b5a12;color:#fde68a;border-radius:10px;padding:9px 11px;font-size:12.5px;margin-bottom:10px}
+canvas{width:100%;height:210px;display:block}
+.sheet{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.6);display:none;align-items:flex-end}.sheet.on{display:flex}
+.sheet>div{background:var(--pn);width:100%;max-height:88vh;overflow:auto;border-radius:18px 18px 0 0;padding:16px 14px calc(16px + var(--sb));border-top:1px solid var(--bd)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(90px + var(--sb));background:#1f2937;border:1px solid var(--bd);padding:9px 14px;border-radius:10px;font-size:13px;z-index:40;display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="hrow"><h1>🇮🇩 IHSG Paper Lab</h1><button class="ib" id="btnR">↻</button></div>
+  <div class="sub"><span id="sUpd">Memuat data…</span><span id="sRev">Review 15:00: -</span><span id="sMkt"></span></div>
+</header>
+<main>
+  <section class="pg on" id="p-home">
+    <div id="demoWarn"></div>
+    <div class="card"><div class="idx"><div><div class="mu sm">IHSG (JKSE) · <span id="ixDate"></span></div><div class="p" id="ixP">-</div></div><div style="text-align:right"><div id="ixC" class="b">-</div><div class="sm mu" id="ixT"></div></div></div>
+      <canvas id="ixSpark" style="height:60px;margin-top:6px"></canvas>
+      <div class="sm mu" id="ixLv" style="margin-top:4px"></div></div>
+    <div class="card"><div class="kpis">
+      <div class="kpi"><div class="v up" id="kPass">-</div><div class="l">Varian PASS</div></div>
+      <div class="kpi"><div class="v" id="kSig">-</div><div class="l">Sinyal aktif</div></div>
+      <div class="kpi"><div class="v" id="kBr">-</div><div class="l">Naik / Turun</div></div></div>
+      <div class="sm mu" style="margin-top:8px" id="kFwd"></div></div>
+    <h3>Rekomendasi model: rencana order</h3>
+    <div id="sigList"></div>
+    <h3>Posisi paper terbuka</h3><div class="card" id="openList"></div>
+    <h3>Riset untuk hari berikutnya</h3><div class="card" id="resMini"></div>
+  </section>
+
+  <section class="pg" id="p-scr">
+    <input id="q" placeholder="Cari kode emiten… (mis. BBRI)" autocomplete="off" autocapitalize="characters">
+    <div class="seg" id="segF" style="margin-top:8px"><a data-f="all" class="on">Semua</a><a data-f="BUY SETUP">BUY setup</a><a data-f="WATCH">Watch</a><a data-f="liq">Likuid ≥50M</a><a data-f="AVOID">Avoid</a></div>
+    <div class="seg" id="segS"><a data-s="score" class="on">Skor</a><a data-s="value20_bn">Nilai trx</a><a data-s="chg1">%1H</a><a data-s="chg20">%20H</a><a data-s="rsi14">RSI</a></div>
+    <div class="card" style="padding:4px 10px"><div id="scrList"></div></div>
+    <div class="sm mu" id="scrInfo"></div>
+  </section>
+
+  <section class="pg" id="p-var">
+    <div class="seg" id="segPh"><a data-ph="fwd" class="on">Forward</a><a data-ph="oos">OOS</a><a data-ph="bt">Backtest</a></div>
+    <div id="vList"></div>
+    <div class="card"><h2>Grafik equity</h2><select id="chV"></select><canvas id="cv" style="margin-top:8px"></canvas><div class="sm mu" id="chInfo"></div>
+      <h3>Trade terakhir</h3><div id="trList"></div></div>
+  </section>
+
+  <section class="pg" id="p-rev">
+    <div class="card"><h2>Review harian 15:00 WIB</h2><div class="chk" id="chk"></div>
+      <textarea id="note" placeholder="Catatan keputusan hari ini…" style="min-height:80px;margin-top:8px"></textarea>
+      <button class="btn" id="btnLog">✔ Simpan review</button></div>
+    <div class="card" id="resFull"></div>
+    <div class="card"><h2>Log review</h2><div id="logList"></div></div>
+  </section>
+
+  <section class="pg" id="p-tool">
+    <div class="card"><h2>Kalkulator lot (fee Ajaib)</h2>
+      <div class="f2"><div class="fld"><label>Modal (Rp)</label><input id="cMod" inputmode="numeric" value="100000000"></div><div class="fld"><label>Risk per trade (%)</label><input id="cRisk" inputmode="decimal" value="0.5"></div></div>
+      <div class="f2"><div class="fld"><label>Harga entry</label><input id="cE" inputmode="numeric"></div><div class="fld"><label>Stop loss</label><input id="cSL" inputmode="numeric"></div></div>
+      <div class="f2"><div class="fld"><label>Maks % modal per posisi</label><input id="cMax" inputmode="decimal" value="20"></div><div class="fld"><label>Target (R)</label><input id="cR" inputmode="decimal" value="2"></div></div>
+      <div id="cOut" class="card" style="background:var(--pn2);margin:0"></div></div>
+    <div class="card"><h2>Pasang di layar utama</h2><div class="sm"><b>iPhone:</b> Safari → Share ⬆︎ → Add to Home Screen.<br><b>Android:</b> Chrome → ⋮ → Install app.</div></div>
+    <div class="card sm mu">Data dari Yahoo Finance via GitHub Actions: tiap ±15 menit saat bursa buka, plus 16:40 WIB untuk data penutupan. Harga tertunda ±15–30 menit, jadi <b>bukan real-time tick</b>. Untuk eksekusi selalu cek harga di aplikasi broker. Ini alat simulasi & edukasi, bukan ajakan membeli efek.</div>
+  </section>
+</main>
+<nav id="nav"><a data-p="home" class="on"><b>⌂</b>Home</a><a data-p="scr"><b>⌕</b>Screener</a><a data-p="var"><b>☰</b>Varian</a><a data-p="rev"><b>✓</b>Review</a><a data-p="tool"><b>⚙</b>Tools</a></nav>
+<div class="sheet" id="sheet"><div id="sheetBody"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const idr=(x,d=0)=>x==null||!isFinite(x)?"-":Number(x).toLocaleString("id-ID",{minimumFractionDigits:d,maximumFractionDigits:d});
+const rp=x=>x==null||!isFinite(x)?"-":(Math.abs(x)>=1e9?idr(x/1e9,2)+" M":Math.abs(x)>=1e6?idr(x/1e6,2)+" jt":idr(x));
+const sg=(x,d=2,suf="")=>x==null||!isFinite(x)?"-":`<span class="${x>0?"up":x<0?"dn":""}">${x>0?"+":""}${idr(x,d)}${suf}</span>`;
+const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem("ihsg_"+k))??d}catch{return d}},set:(k,v)=>{try{localStorage.setItem("ihsg_"+k,JSON.stringify(v))}catch{}}};
+const toast=t=>{const e=$("#toast");e.textContent=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2200)};
+const wib=()=>new Date(Date.now()+7*36e5),wibDate=()=>wib().toISOString().slice(0,10);
+let S=null,SCR=[],SIG=[],EQ={},TR=[],RES=null,PH="fwd",FIL="all",SORT="score";
+const CHK=["Scalp C1/C2: semua posisi sudah flat sebelum 15:49","Cek status PASS/FAIL/COLLECTING tiap varian","Drawdown < 10%, tidak ada rugi > risk per trade","Screener: BUY setup baru untuk besok (rencana entry/SL/TP/lot)","Riset & event besok (FOMC, data, aksi korporasi)","Keputusan: lanjut / pause / kill (tanpa ubah parameter)"];
+
+async function getJ(f){const r=await fetch("data/"+f+"?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error(f+" "+r.status);return r.json()}
+async function load(){
+  $("#btnR").textContent="…";
+  try{[S,SCR,SIG,EQ,TR]=await Promise.all(["summary.json","screener.json","signals.json","equity.json","trades.json"].map(getJ));
+    try{RES=await getJ("research.json")}catch{RES=null}
+    LS.set("cache",{S,SCR,SIG,EQ,TR,RES});render();toast("Data diperbarui")}
+  catch(e){const c=LS.get("cache",null);if(c){({S,SCR,SIG,EQ,TR,RES}=c);render();toast("Offline: pakai data tersimpan")}else $("#sUpd").textContent="Gagal memuat data/ – cek GitHub Actions sudah jalan"}
+  $("#btnR").textContent="↻";
+}
+function mkt(){const d=wib(),w=d.getUTCDay(),m=d.getUTCHours()*60+d.getUTCMinutes(),fri=w===5;
+  if(w===0||w===6)return"Bursa tutup (akhir pekan)";
+  if(m<525)return"Pra-buka 08:45";if(m<540)return"Pra-pembukaan";if(m<(fri?690:720))return"Sesi I berjalan";if(m<(fri?840:810))return"Istirahat siang";
+  if(m<950)return"Sesi II berjalan";if(m<962)return"Pra-penutupan";return"Bursa tutup"}
+function render(){
+  $("#sUpd").textContent="Data per "+S.updated+" WIB";$("#sMkt").textContent=mkt();
+  $("#demoWarn").innerHTML=S.demo?'<div class="warn">⚠ DATA DEMO SINTETIS: bukan harga asli. Jalankan GitHub Actions (Run workflow) untuk data Yahoo Finance.</div>':(S.n_loaded<S.n_universe*0.8?`<div class="warn">Hanya ${S.n_loaded}/${S.n_universe} emiten berhasil diunduh.</div>`:"");
+  const I=S.ihsg;$("#ixP").textContent=idr(I.close,2);$("#ixC").innerHTML=sg(I.chg,2,"%");$("#ixDate").textContent=I.date;
+  const tr=I.close>I.ema200?(I.close>I.ema50?"Uptrend":"Di atas EMA200"):(I.close>I.ema50?"Rebound di bawah EMA200":"Downtrend");
+  $("#ixT").textContent=tr+" · RSI "+idr(I.rsi14,0);
+  $("#ixLv").innerHTML=`EMA20 ${idr(I.ema20)} · EMA50 ${idr(I.ema50)} · EMA200 ${idr(I.ema200)} · 52w ${idr(I.lo52)}–${idr(I.hi52)}`;
+  spark($("#ixSpark"),I.spark);
+  $("#kPass").textContent=S.n_pass+"/5";$("#kSig").textContent=SIG.length;$("#kBr").innerHTML=`<span class="up">${S.breadth.up}</span>/<span class="dn">${S.breadth.down}</span>`;
+  const fw=Date.parse(S.forward_start+"T00:00:00+07:00"),nF=S.variants.reduce((a,v)=>a+(v.fwd?v.fwd.trades:0),0);
+  $("#kFwd").innerHTML=Date.now()<fw?`Paper forward test mulai <b>${S.forward_start}</b>. Sebelum itu status memakai hasil OOS.`:`Forward test hari ke-<b>${Math.floor((Date.now()-fw)/864e5)+1}</b> · ${nF} trade · universe ${S.n_loaded} emiten (${S.universe_src}) · ${S.breadth.buy_setups} BUY setup`;
+  renderSig();renderOpen();renderScr();renderVars();renderChart();renderRev();calc();
+}
+function spark(cv,a){if(!a||!a.length)return;const dpr=devicePixelRatio||1,W=cv.clientWidth||340,H=cv.clientHeight||60;cv.width=W*dpr;cv.height=H*dpr;const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
+  const mn=Math.min(...a),mx=Math.max(...a);x.strokeStyle=a[a.length-1]>=a[0]?"#22c55e":"#ef4444";x.lineWidth=1.6;x.beginPath();a.forEach((v,i)=>{const X=i/(a.length-1)*W,Y=H-2-(v-mn)/(mx-mn||1)*(H-4);i?x.lineTo(X,Y):x.moveTo(X,Y)});x.stroke()}
+const VN=id=>(S.variants.find(v=>v.id===id)||{});
+function sigCard(s){const v=VN(s.variant),sc=SCR.find(r=>r.code===s.ticker)||{};
+  return `<div class="sig" data-t="${s.ticker}"><div class="a"><div><span class="t">${s.ticker}</span> <span class="badge BUY">BUY</span> <span class="badge ${v.status}">${s.variant} ${v.status==="COLLECTING"?"COLLECT":v.status}</span></div><div class="sm mu">${v.kind==="scalp"?"Scalp hari ini":"Swing"}</div></div>
+   <div class="sm mu" style="margin-top:3px">${v.name} · ${v.profile}${sc.value20_bn!=null?" · nilai trx "+idr(sc.value20_bn,1)+" M/hari":""}</div>
+   <div class="g3"><div><b>${idr(s.entry)}</b><span>Entry (limit)</span></div><div><b class="dn">${idr(s.sl)}</b><span>Stop loss −${idr(s.sl_pct,1)}%</span></div><div><b class="up">${s.tp?idr(s.tp):"Trail "+s.trail+"×ATR"}</b><span>Take profit</span></div>
+   <div><b>${idr(s.lots)} lot</b><span>Ukuran</span></div><div><b>${rp(s.value)}</b><span>Nilai beli</span></div><div><b>${rp(s.risk_rp)}</b><span>Risiko maks</span></div></div></div>`}
+function renderSig(){
+  const pass=SIG.filter(s=>VN(s.variant).status==="PASS"),other=SIG.filter(s=>VN(s.variant).status!=="PASS");
+  let h=pass.length?pass.map(sigCard).join(""):`<div class="card sm">Belum ada sinyal dari varian yang <b>PASS</b>. ${S.n_pass?"":"Belum ada varian yang lolos syarat, jadi sinyal di bawah hanya untuk <b>paper</b> (jangan pakai uang asli dulu)."}</div>`;
+  if(other.length)h+=`<h3>Sinyal varian belum lolos (paper saja)</h3>`+other.slice(0,12).map(sigCard).join("")+(other.length>12?`<div class="sm mu">+${other.length-12} sinyal lain di Screener</div>`:"");
+  $("#sigList").innerHTML=h;$$("#sigList .sig").forEach(e=>e.onclick=()=>detail(e.dataset.t));
+}
+function renderOpen(){let h="",n=0;for(const v of S.variants)for(const p of v.open){n++;h+=`<div class="row"><span><b>${p.ticker}</b> <span class="mu sm">${v.id} · ${idr(p.lots)} lot @${idr(p.entry)}</span><br><span class="sm mu">SL ${idr(p.sl)} · TP ${p.tp?idr(p.tp):"trail"} · last ${idr(p.last)}</span></span><span>${sg(p.upnl,0)}<br><span class="sm mu">${sg(p.upnl/v.risk_rp,2,"R")}</span></span></div>`}
+  $("#openList").innerHTML=n?h:'<div class="sm mu">Belum ada posisi paper terbuka di fase forward.</div>'}
+function renderScr(){
+  const q=$("#q").value.trim().toUpperCase();let a=SCR.filter(r=>(!q||r.code.includes(q))&&(FIL==="all"||(FIL==="liq"?r.value20_bn>=50:r.action===FIL)));
+  a=a.slice().sort((x,y)=>(y[SORT]??-1e9)-(x[SORT]??-1e9));
+  $("#scrInfo").textContent=`${a.length} dari ${SCR.length} emiten · skor = tren (EMA20/50/200) + momentum + likuiditas + RSI sehat`;
+  $("#scrList").innerHTML=a.slice(0,150).map(r=>`<div class="srow" data-t="${r.code}"><div class="c">${r.code}</div><div class="m">${idr(r.close)} · ${sg(r.chg1,1,"%")} · Rp${idr(r.value20_bn,1)}M · RSI ${idr(r.rsi14,0)}<br>Tren ${"▲".repeat(r.trend)}${"△".repeat(3-r.trend)} · 20H ${sg(r.chg20,1,"%")}</div><div class="r"><span class="badge ${r.action.split(" ")[0]}">${r.action}</span><div class="sm mu">skor ${idr(r.score,0)}</div></div></div>`).join("")||'<div class="sm mu" style="padding:10px">Tidak ada hasil.</div>';
+  $$("#scrList .srow").forEach(e=>e.onclick=()=>detail(e.dataset.t));
+}
+function detail(code){const r=SCR.find(x=>x.code===code)||{code},ss=SIG.filter(s=>s.ticker===code);
+  $("#sheetBody").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:20px;margin:0">${code}</h2><button class="ib" onclick="$('#sheet').classList.remove('on')">✕</button></div>
+  <div class="g3"><div><b>${idr(r.close)}</b><span>Close</span></div><div><b>${sg(r.chg1,2,"%")}</b><span>1 hari</span></div><div><b>${sg(r.chg5,1,"%")}</b><span>5 hari</span></div>
+  <div><b>${sg(r.chg20,1,"%")}</b><span>20 hari</span></div><div><b>${idr(r.value20_bn,1)} M</b><span>Nilai trx/hari</span></div><div><b>${idr(r.vol_ratio,2)}×</b><span>Vol vs rata2</span></div>
+  <div><b>${idr(r.rsi14,0)}</b><span>RSI 14</span></div><div><b>${idr(r.atr_pct,2)}%</b><span>ATR (volatilitas)</span></div><div><b>${idr(r.pos52,0)}%</b><span>Posisi 52 minggu</span></div></div>
+  <div class="row" style="margin-top:8px"><span class="mu">Tren</span><span>${["Downtrend","Lemah","Menguat","Uptrend kuat"][r.trend]||"-"}</span></div>
+  <div class="row"><span class="mu">Jarak ke high 20H</span><span>${sg(r.dist20h,1,"%")}</span></div>
+  <div class="row"><span class="mu">Status model</span><span class="badge ${String(r.action).split(" ")[0]}">${r.action}</span></div>
+  ${ss.length?"<h3>Rencana order</h3>"+ss.map(sigCard).join(""):'<div class="sm mu" style="margin-top:8px">Tidak ada sinyal varian untuk emiten ini hari ini.</div>'}
+  <div class="sm mu" style="margin-top:8px">Cek dulu: aksi korporasi, papan pemantauan khusus, ARB/ARA, dan berita, sebelum eksekusi di broker.</div>`;
+  $("#sheet").classList.add("on")}
+$("#sheet").onclick=e=>{if(e.target.id==="sheet")$("#sheet").classList.remove("on")};
+function renderVars(){
+  $("#vList").innerHTML=S.variants.map(v=>{const m=v[PH]||{trades:0,net:0,pf:0,exp_r:0,win_rate:0,max_dd_pct:0,max_losing_streak:0,fees:0};
+    return `<div class="vc" id="vc-${v.id}"><div class="vh" data-v="${v.id}"><div class="t"><b>${v.id} ${v.name}</b><div class="d">${v.kind==="swing"?"Swing harian":"Scalp 15m"} · ${v.profile} · risk ${rp(v.risk_rp)}/trade</div></div>
+    <div class="pnl">${sg(m.net,0)}<small>${m.trades} trade</small></div><span class="badge ${v.status}">${v.status==="COLLECTING"?"COLLECT":v.status}</span></div>
+    <div class="vb"><div class="g3"><div><b>${idr(m.pf,2)}</b><span>Profit factor</span></div><div><b>${sg(m.exp_r)}</b><span>Expectancy R</span></div><div><b>${idr(m.win_rate*100,0)}%</b><span>Win rate</span></div>
+    <div><b>${idr(m.max_dd_pct,1)}%</b><span>Max DD</span></div><div><b>${m.max_losing_streak}</b><span>Kalah beruntun</span></div><div><b>${rp(m.fees)}</b><span>Total fee</span></div></div>
+    <div class="row"><span class="mu">Aturan</span><span class="sm">${v.desc}</span></div>
+    <div class="row"><span class="mu">Exit</span><span class="sm">SL ${v.sl_atr}×ATR · ${v.tp_r?"TP "+v.tp_r+"R":v.trail_atr?"trailing "+v.trail_atr+"×ATR":"exit sinyal"}${v.time_stop?" · maks "+v.time_stop+" hari":""}${v.kind==="scalp"?" · flat sebelum tutup":""}</span></div>
+    <div class="row"><span class="mu">Periode BT / OOS</span><span class="sm">${v.period.bt[0].slice(0,10)} → ${v.period.oos[0].slice(0,10)} → ${v.period.oos[1]}</span></div>
+    <div class="row"><span class="mu">BT → OOS ExpR</span><span>${idr(v.bt.exp_r,2)} → ${idr(v.oos.exp_r,2)} · basis ${v.basis}</span></div></div></div>`}).join("");
+  $$("[data-v]").forEach(e=>e.onclick=()=>$("#vc-"+e.dataset.v).classList.toggle("open"));
+  const sel=$("#chV");if(!sel.options.length)sel.innerHTML='<option value="ALL">Semua varian</option>'+S.variants.map(v=>`<option value="${v.id}">${v.id} ${v.name}</option>`).join("");
+}
+const COL={S1:"#60a5fa",S2:"#34d399",S3:"#fbbf24",C1:"#f87171",C2:"#a78bfa"};
+function renderChart(){const cv=$("#cv"),dpr=devicePixelRatio||1,W=cv.clientWidth||340,H=210;cv.width=W*dpr;cv.height=H*dpr;const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
+  const ids=$("#chV").value==="ALL"||!$("#chV").value?Object.keys(EQ):[$("#chV").value],ser=ids.map(i=>[i,(EQ[i]||{})[PH]||[]]).filter(s=>s[1].length);
+  if(!ser.length){x.fillStyle="#8b98a9";x.font="13px sans-serif";x.fillText("Belum ada data di fase ini.",10,30);$("#chInfo").textContent="";renderTr();return}
+  let t0=1/0,t1=-1/0,y0=1/0,y1=-1/0;for(const[,s]of ser)for(const[d,e]of s){const t=Date.parse(d);t0=Math.min(t0,t);t1=Math.max(t1,t);y0=Math.min(y0,e);y1=Math.max(y1,e)}
+  const pl=46,X=t=>pl+(t-t0)/Math.max(1,t1-t0)*(W-pl-6),Y=e=>6+(1-(e-y0)/(y1-y0||1))*(H-28);
+  x.strokeStyle="#2b3442";x.fillStyle="#8b98a9";x.font="10px sans-serif";for(let k=0;k<=4;k++){const v=y0+(y1-y0)*k/4;x.beginPath();x.moveTo(pl,Y(v));x.lineTo(W,Y(v));x.stroke();x.fillText(idr(v/1e6,0)+"jt",2,Y(v)+3)}
+  x.fillText(new Date(t0).toISOString().slice(0,10),pl,H-4);
+  for(const[i,s]of ser){x.strokeStyle=COL[i];x.lineWidth=ser.length>1?1.4:2;x.beginPath();s.forEach(([d,e],k)=>k?x.lineTo(X(Date.parse(d)),Y(e)):x.moveTo(X(Date.parse(d)),Y(e)));x.stroke()}
+  $("#chInfo").innerHTML=ser.map(([i,s])=>`<span style="color:${COL[i]}">■</span> ${i} ${rp(s[s.length-1][1])}`).join(" · ");renderTr()}
+function renderTr(){const id=$("#chV").value,ph=PH.toUpperCase(),t=TR.filter(r=>r.phase===ph&&(id==="ALL"||!id||r.variant===id)).slice(-40).reverse();
+  $("#trList").innerHTML=t.length?t.map(r=>`<div class="tr"><span>${String(r.exit_time).slice(5,16)} · <b>${r.ticker}</b> ${r.variant} · <span class="mu">${r.reason}</span></span><span>${sg(r.pnl,0)} <span class="mu">${idr(r.R,1)}R</span></span></div>`).join(""):'<div class="sm mu">Belum ada trade.</div>'}
+function renderRev(){const td=wibDate(),done=LS.get("chk_"+td,[]);
+  $("#chk").innerHTML=CHK.map((c,i)=>`<label><input type="checkbox" data-c="${i}" ${done.includes(i)?"checked":""}>${c}</label>`).join("");
+  $$("[data-c]").forEach(e=>e.onchange=()=>{const a=new Set(LS.get("chk_"+td,[]));e.checked?a.add(+e.dataset.c):a.delete(+e.dataset.c);LS.set("chk_"+td,[...a])});
+  const R=RES;if(R){const ctx=R.context.map(c=>`<div class="row"><span class="mu">${c.k}</span><span class="sm">${c.v}</span></div>`).join(""),ev=R.events.map(e=>`<div class="ev"><b>${e.d}</b> · ${e.e}<div class="x">→ ${e.a}</div></div>`).join("");
+    $("#resFull").innerHTML=`<h2>${R.title}</h2>${ctx}<h3>Kalender & aksi bot</h3>${ev}<h3>Fokus</h3><ul class="sm">${R.focus.map(f=>`<li>${f}</li>`).join("")}</ul>`;
+    $("#resMini").innerHTML=`<b>${R.title}</b>`+R.context.slice(0,3).map(c=>`<div class="ev"><b>${c.k}</b><div class="sm mu">${c.v}</div></div>`).join("")+R.events.slice(0,2).map(e=>`<div class="ev"><b>${e.d}</b> · ${e.e}<div class="x">→ ${e.a}</div></div>`).join("")}
+  else{$("#resFull").innerHTML='<div class="sm mu">research.json belum ada.</div>';$("#resMini").innerHTML=$("#resFull").innerHTML}
+  const L=LS.get("log",[]);$("#logList").innerHTML=L.length?L.slice().reverse().map(l=>`<div class="ev"><b>${l.date}</b> <span class="badge PASS">${l.pass} PASS</span> <span class="badge BUY">${l.sig} sinyal</span><div class="sm mu">${l.note}</div></div>`).join(""):'<div class="sm mu">Belum ada review.</div>'}
+$("#btnLog").onclick=()=>{const L=LS.get("log",[]).filter(l=>l.date!==wibDate());L.push({date:wibDate(),pass:S.n_pass,sig:SIG.length,note:$("#note").value.replace(/</g,"&lt;")});LS.set("log",L);$("#note").value="";renderRev();toast("Review tersimpan")};
+function tickOf(p){return p<200?1:p<500?2:p<2000?5:p<5000?10:25}
+function calc(){const M=+$("#cMod").value||0,rk=(+$("#cRisk").value||0)/100*M,E=+$("#cE").value,SL=+$("#cSL").value,mx=(+$("#cMax").value||100)/100*M,R=+$("#cR").value||0,FB=S?S.fee_buy:0.001513,FS=S?S.fee_sell:0.002513;
+  if(!(E>0&&SL>0&&SL<E)){$("#cOut").innerHTML='<div class="sm mu">Isi harga entry & stop loss (SL di bawah entry). Fraksi harga: &lt;200=1, &lt;500=2, &lt;2.000=5, &lt;5.000=10, ≥5.000=25.</div>';return}
+  const per=(E-SL)+tickOf(SL)+E*FB+SL*FS,lots=Math.max(0,Math.min(Math.floor(rk/(per*100)),Math.floor(mx/(E*100*(1+FB))))),tp=Math.ceil((E+R*(E-SL))/tickOf(E+R*(E-SL)))*tickOf(E+R*(E-SL)),be=E*(1+FB)/(1-FS);
+  $("#cOut").innerHTML=`<div class="g3"><div><b>${idr(lots)} lot</b><span>Beli</span></div><div><b>${rp(lots*100*E*(1+FB))}</b><span>Dana (incl fee)</span></div><div><b class="dn">${rp(lots*100*per)}</b><span>Rugi di SL</span></div>
+   <div><b class="up">${idr(tp)}</b><span>TP ${R}R</span></div><div><b>${rp(lots*100*(tp*(1-FS)-E*(1+FB)))}</b><span>Untung di TP</span></div><div><b>${idr(be,1)}</b><span>Harga impas</span></div></div>
+   <div class="sm mu" style="margin-top:6px">SL ${idr((E-SL)/E*100,2)}% di bawah entry · fee pulang-pergi ${idr((FB+FS)*100,2)}% · ${lots===0?"<b class='dn'>Risk terlalu kecil untuk 1 lot</b>":""}</div>`}
+["#cMod","#cRisk","#cE","#cSL","#cMax","#cR"].forEach(i=>$(i).oninput=calc);
+function go(p){$$("#nav a").forEach(a=>a.classList.toggle("on",a.dataset.p===p));$$(".pg").forEach(s=>s.classList.toggle("on",s.id==="p-"+p));scrollTo(0,0);if(p==="var")renderChart()}
+$$("#nav a").forEach(a=>a.onclick=()=>go(a.dataset.p));
+$$("#segF a").forEach(a=>a.onclick=()=>{$$("#segF a").forEach(b=>b.classList.toggle("on",b===a));FIL=a.dataset.f;renderScr()});
+$$("#segS a").forEach(a=>a.onclick=()=>{$$("#segS a").forEach(b=>b.classList.toggle("on",b===a));SORT=a.dataset.s;renderScr()});
+$$("#segPh a").forEach(a=>a.onclick=()=>{$$("#segPh a").forEach(b=>b.classList.toggle("on",b===a));PH=a.dataset.ph;renderVars();renderChart()});
+$("#q").oninput=renderScr;$("#chV").onchange=renderChart;$("#btnR").onclick=load;
+function tick(){const n=wib(),t=new Date(n);t.setUTCHours(15,0,0,0);if(t<=n)t.setUTCDate(t.getUTCDate()+1);const ms=t-n;$("#sRev").textContent=`Review 15:00 dlm ${Math.floor(ms/36e5)}j ${Math.floor(ms%36e5/6e4)}m`;if(S)$("#sMkt").textContent=mkt()}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")load()});
+if("serviceWorker"in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+tick();setInterval(tick,30000);load();setInterval(()=>{if(document.visibilityState==="visible")load()},120000);
+</script>
+</body>
+</html>
